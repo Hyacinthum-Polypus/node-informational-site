@@ -2,7 +2,7 @@ import http from 'node:http'
 import fs from 'fs/promises'
 
 const server = http.createServer((req, res) => {
-    switch(req.path) {
+    switch(req.url) {
         case '/':
             res.writeHead(200, {'Content-Type': 'text/html'});
             fs.readFile('./index.html', 'utf-8')
@@ -17,7 +17,7 @@ const server = http.createServer((req, res) => {
                 res.end(data);
             })
         break;
-        case 'contact-me':
+        case '/contact-me':
             res.writeHead(200, {'Content-Type': 'text/html'});
             fs.readFile('./contact-me.html', 'utf-8')
             .then(data => {
